@@ -44,40 +44,39 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBLcOTzaSCP11FTiGCbb6MSmhGBhc1Tm8M',
-    appId: '1:427273520173:web:1a16f50bc8a9cfdc2aa4a4',
-    messagingSenderId: '427273520173',
-    projectId: 'tik-tok-clone-99810',
-    authDomain: 'tik-tok-clone-99810.firebaseapp.com',
-    storageBucket: 'tik-tok-clone-99810.appspot.com',
-    measurementId: 'G-VGCDSLD9XF',
+    apiKey: 'AIzaSyB5r6WPqILxL7-UyWFzYu7rjPZtNvKP9EM',
+    appId: '1:347085566677:web:9c0f355f1ddb14d137685c',
+    messagingSenderId: '347085566677',
+    projectId: 'tik-tok-36baf',
+    authDomain: 'tik-tok-36baf.firebaseapp.com',
+    storageBucket: 'tik-tok-36baf.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCGYAsD3amxcTBA3eoe05lvq5N_0V-apcs',
-    appId: '1:427273520173:android:004ca41e4b754ec32aa4a4',
-    messagingSenderId: '427273520173',
-    projectId: 'tik-tok-clone-99810',
-    storageBucket: 'tik-tok-clone-99810.appspot.com',
+    apiKey: 'AIzaSyCfBqNUGTVzPkImyH1IMwLYy2wCy2hf_Po',
+    appId: '1:347085566677:android:58ddfabc0d7f0f9d37685c',
+    messagingSenderId: '347085566677',
+    projectId: 'tik-tok-36baf',
+    storageBucket: 'tik-tok-36baf.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBhHiphlWSJ1OUAkU65wqIpOop8CXFsHvI',
-    appId: '1:427273520173:ios:e6ddba4cbf645eab2aa4a4',
-    messagingSenderId: '427273520173',
-    projectId: 'tik-tok-clone-99810',
-    storageBucket: 'tik-tok-clone-99810.appspot.com',
-    iosClientId: '427273520173-79t4e3thu4gn8tifarkk7rv32geb32oq.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAuE9ldkjGdntGpsq6rPATtjhVh54uuaFk',
+    appId: '1:347085566677:ios:04e29a5b8d77768e37685c',
+    messagingSenderId: '347085566677',
+    projectId: 'tik-tok-36baf',
+    storageBucket: 'tik-tok-36baf.appspot.com',
+    iosClientId: '347085566677-ficbqubmid87foslb8s6c2vt7kj6go3g.apps.googleusercontent.com',
     iosBundleId: 'com.example.tiktokClone',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBhHiphlWSJ1OUAkU65wqIpOop8CXFsHvI',
-    appId: '1:427273520173:ios:e6ddba4cbf645eab2aa4a4',
-    messagingSenderId: '427273520173',
-    projectId: 'tik-tok-clone-99810',
-    storageBucket: 'tik-tok-clone-99810.appspot.com',
-    iosClientId: '427273520173-79t4e3thu4gn8tifarkk7rv32geb32oq.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAuE9ldkjGdntGpsq6rPATtjhVh54uuaFk',
+    appId: '1:347085566677:ios:04e29a5b8d77768e37685c',
+    messagingSenderId: '347085566677',
+    projectId: 'tik-tok-36baf',
+    storageBucket: 'tik-tok-36baf.appspot.com',
+    iosClientId: '347085566677-ficbqubmid87foslb8s6c2vt7kj6go3g.apps.googleusercontent.com',
     iosBundleId: 'com.example.tiktokClone',
   );
 }
