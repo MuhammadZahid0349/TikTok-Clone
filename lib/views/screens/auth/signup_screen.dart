@@ -1,18 +1,29 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/constants.dart';
-import 'package:tiktok_clone/controllers/auth_controller.dart';
+import 'package:tiktok_clone/views/screens/auth/auth_controller.dart';
 import 'package:tiktok_clone/views/screens/auth/login_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class SignupScreen extends StatelessWidget {
-  SignupScreen({Key? key}) : super(key: key);
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
+
   final TextEditingController _usernameController = TextEditingController();
+  bool showProgressBar = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +34,7 @@ class SignupScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              40.h.heightBox,
+              50.h.heightBox,
               Text(
                 'Tiktok Clone',
                 style: TextStyle(
@@ -33,35 +44,54 @@ class SignupScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                'Register',
+                'Create a Account',
                 style: TextStyle(
                   fontSize: 25.sp,
                   fontWeight: FontWeight.w700,
                 ),
               ),
               25.h.heightBox,
-              Stack(
-                children: [
-                  const CircleAvatar(
-                    radius: 64,
-                    backgroundImage: NetworkImage(
-                        'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
-                    backgroundColor: Colors.black,
-                  ),
-                  Positioned(
-                    bottom: -10,
-                    left: 80,
-                    child: IconButton(
-                      onPressed: () {
-                        authController.pickImage();
-                      },
-                      icon: const Icon(
-                        Icons.add_a_photo,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              GestureDetector(onTap: () {
+                authController.pickImage();
+                // authController.getImage();
+              }, child: Obx(() {
+                return CircleAvatar(
+                  radius: 64.r,
+                  backgroundImage:
+                      authController.isProfilePicPathset.value == true
+                          ? FileImage(File(authController.profilePicPath.value))
+                              as ImageProvider
+                          : const AssetImage("assets/p.jpg"),
+                  // backgroundImage: authController.imagePath.isNotEmpty
+                  // ? FileImage(authController.imagePath as File)
+                  // : null,
+                  backgroundColor: Colors.white,
+                );
+              })),
+
+              // Stack(
+              //   children: [
+              //     CircleAvatar(
+              //       radius: 64.r,
+              //       backgroundImage: AssetImage("assets/p.jpg"),
+              //       backgroundColor: Colors.white,
+              //     ),
+
+              //     Positioned(
+              //       bottom: -10,
+              //       left: 80,
+              //       child: IconButton(
+              //         onPressed: () {
+              //           authController.pickImage();
+              //         },
+              //         icon: const Icon(
+              //           Icons.add_a_photo,
+              //         ),
+              //       ),
+              //     ),
+
+              //   ],
+              // ),
               15.h.heightBox,
               Container(
                 width: Get.width,
@@ -93,7 +123,7 @@ class SignupScreen extends StatelessWidget {
                   isObscure: true,
                 ),
               ),
-              30.h.heightBox,
+              40.h.heightBox,
               Container(
                 width: Get.width - 40,
                 height: 50.h,
@@ -113,7 +143,7 @@ class SignupScreen extends StatelessWidget {
                   },
                   child: Center(
                     child: Text(
-                      'Register',
+                      'Sign Up',
                       style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w700,
@@ -122,7 +152,7 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              15.h.heightBox,
+              25.h.heightBox,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

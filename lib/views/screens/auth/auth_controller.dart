@@ -9,40 +9,53 @@ import 'package:tiktok_clone/views/screens/auth/login_screen.dart';
 import 'package:tiktok_clone/views/screens/home_screen.dart';
 
 class AuthController extends GetxController {
-  static AuthController instance = Get.find();
+  static AuthController instanceAuth = Get.find();
 
-  late Rx<User?> _user;
-  late Rx<File?> _pickedImage;
+  var isProfilePicPathset = false.obs;
+  var profilePicPath = ''.obs;
 
-  File? get profilePhoto => _pickedImage.value;
-  User get user => _user.value!;
-
-  @override
-  void onReady() {
-    super.onReady();
-    _user = Rx<User?>(firebaseAuth.currentUser);
-    _user.bindStream(firebaseAuth.authStateChanges());
-    ever(_user, _setInitialScreen);
+  void setprofileImagePath(String path) {
+    profilePicPath.value = path;
+    isProfilePicPathset.value = true;
   }
 
-  _setInitialScreen(User? user) {
-    if (user == null) {
-      Get.offAll(() => LoginScreen());
-    } else {
-      Get.offAll(() => const HomeScreen());
-    }
-  }
-
-/////////////////// pick image /////////////////////
+  File? pickedFile;
+///////////////////////////
+  File? get profilePhoto => pickedFile;
+  /////////////////// pick image /////////////////////
   void pickImage() async {
     final pickedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       Get.snackbar('Profile Picture',
           'You have successfully selected your profile picture!');
+      pickedFile = (File(pickedImage.path));
+      authController.setprofileImagePath(pickedFile!.path);
+    } else {
+      Get.snackbar('Profile Picture', 'No image selected');
     }
-    _pickedImage = Rx<File?>(File(pickedImage!.path));
   }
+
+  ///////////////////////
+  late Rx<User?> _user;
+
+  User get user => _user.value!;
+
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  //   _user = Rx<User?>(firebaseAuth.currentUser);
+  //   _user.bindStream(firebaseAuth.authStateChanges());
+  //   ever(_user, _setInitialScreen);
+  // }
+
+  // _setInitialScreen(User? user) {
+  //   if (user == null) {
+  //     Get.offAll(() => LoginScreen());
+  //   } else {
+  //     Get.offAll(() => const HomeScreen());
+  //   }
+  // }
 
   // registering the user
   void registerUser(
