@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/auth/auth_controller.dart';
 import 'package:tiktok_clone/views/screens/auth/login_screen.dart';
+import 'package:tiktok_clone/views/screens/home_screen.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -68,30 +69,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   backgroundColor: Colors.white,
                 );
               })),
-
-              // Stack(
-              //   children: [
-              //     CircleAvatar(
-              //       radius: 64.r,
-              //       backgroundImage: AssetImage("assets/p.jpg"),
-              //       backgroundColor: Colors.white,
-              //     ),
-
-              //     Positioned(
-              //       bottom: -10,
-              //       left: 80,
-              //       child: IconButton(
-              //         onPressed: () {
-              //           authController.pickImage();
-              //         },
-              //         icon: const Icon(
-              //           Icons.add_a_photo,
-              //         ),
-              //       ),
-              //     ),
-
-              //   ],
-              // ),
               15.h.heightBox,
               Container(
                 width: Get.width,
@@ -124,23 +101,23 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
               40.h.heightBox,
-              Container(
-                width: Get.width - 40,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  color: buttonColor,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5.r),
+              GestureDetector(
+                onTap: () {
+                  authController.signUpUser(
+                      _usernameController.text.trim(),
+                      _emailController.text.trim(),
+                      _passwordController.text.trim(),
+                      authController.profilePhoto);
+                },
+                child: Container(
+                  width: Get.width - 40,
+                  height: 50.h,
+                  decoration: BoxDecoration(
+                    color: buttonColor,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5.r),
+                    ),
                   ),
-                ),
-                child: InkWell(
-                  onTap: () {
-                    authController.registerUser(
-                        _usernameController.text,
-                        _emailController.text,
-                        _passwordController.text,
-                        authController.profilePhoto);
-                  },
                   child: Center(
                     child: Text(
                       'Sign Up',

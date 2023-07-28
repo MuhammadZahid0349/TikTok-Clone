@@ -38,39 +38,42 @@ class AuthController extends GetxController {
 
   ///////////////////////
   late Rx<User?> _user;
-
   User get user => _user.value!;
 
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  //   _user = Rx<User?>(firebaseAuth.currentUser);
-  //   _user.bindStream(firebaseAuth.authStateChanges());
-  //   ever(_user, _setInitialScreen);
-  // }
+  @override
+  void onReady() {
+    super.onReady();
+    _user = Rx<User?>(firebaseAuth.currentUser);
+    _user.bindStream(firebaseAuth.authStateChanges());
+    ever(_user, _setInitialScreen);
+  }
 
-  // _setInitialScreen(User? user) {
-  //   if (user == null) {
-  //     Get.offAll(() => LoginScreen());
-  //   } else {
-  //     Get.offAll(() => const HomeScreen());
-  //   }
-  // }
+////////////////////// CHeck user have account or not
+  _setInitialScreen(User? currentuser) {
+    if (currentuser == null) {
+      Get.offAll(() => LoginScreen());
+    } else {
+      Get.offAll(() => const HomeScreen());
+    }
+  }
 
   // registering the user
-  void registerUser(
+  void signUpUser(
       String username, String email, String password, File? image) async {
     try {
       if (username.isNotEmpty &&
           email.isNotEmpty &&
           password.isNotEmpty &&
           image != null) {
-        // save out user to our ath and firebase firestore
+        // Create user in the firebase authentication
         UserCredential cred = await firebaseAuth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
+        // save the user profile image to firebase storage
         String downloadUrl = await _uploadToStorage(image);
+
+        //save user to the firestore database
         UserModel user = UserModel(
           name: username,
           email: email,
@@ -81,6 +84,11 @@ class AuthController extends GetxController {
             .collection('users')
             .doc(cred.user!.uid)
             .set(user.toJson());
+        Get.snackbar(
+          'Your Account has been created',
+          '',
+        );
+        Get.to(() => const HomeScreen());
       } else {
         Get.snackbar(
           'Error Creating Account',
@@ -100,6 +108,11 @@ class AuthController extends GetxController {
       if (email.isNotEmpty && password.isNotEmpty) {
         await firebaseAuth.signInWithEmailAndPassword(
             email: email, password: password);
+        Get.snackbar(
+          'Login Successfully',
+          '',
+        );
+        Get.to(() => const HomeScreen());
       } else {
         Get.snackbar(
           'Error Logging in',

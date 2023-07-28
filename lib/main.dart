@@ -7,6 +7,7 @@ import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/screens/auth/auth_controller.dart';
 import 'package:tiktok_clone/firebase_options.dart';
 import 'package:tiktok_clone/views/screens/auth/signup_screen.dart';
+import 'package:tiktok_clone/views/screens/home_screen.dart';
 
 import 'views/screens/auth/login_screen.dart';
 

@@ -84,7 +84,7 @@ class AddVideoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: InkWell(
+        child: GestureDetector(
           onTap: () => showOptionsDialog(context),
           child: Container(
             width: 190,
